@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Layers, Map, Wrench, List, X } from "lucide-react";
+import { Layers, Map, Wrench, List, X, LucideProps } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -33,7 +33,7 @@ const MapControls = () => {
 
   const renderButton = (
     menu: keyof typeof menuItems,
-    Icon: any,
+    Icon: React.ComponentType<LucideProps>,
     label: string
   ) => (
     <TooltipProvider>

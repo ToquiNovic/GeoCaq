@@ -1,7 +1,9 @@
 // assets/notFoundIcon.tsx
 import React from "react";
 
-interface NotFoundIconProps extends React.SVGProps<SVGSVGElement> {}
+interface NotFoundIconProps extends React.SVGProps<SVGSVGElement> {
+  className?: string;
+}
 
 export const NotFoundIcon: React.FC<NotFoundIconProps> = () => (
   <svg

@@ -3,7 +3,7 @@ import React from "react";
 
 interface NotFoundIconProps extends React.SVGProps<SVGSVGElement> {}
 
-export const NotFoundIcon: React.FC<NotFoundIconProps> = (props) => (
+export const NotFoundIcon: React.FC<NotFoundIconProps> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1024 768"

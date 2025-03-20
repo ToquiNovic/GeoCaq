@@ -76,12 +76,14 @@ import {
           {
             href: "/users",
             label: "Users",
-            icon: Users
+            icon: Users,
+            active: pathname.startsWith("/users"),
           },
           {
             href: "/account",
             label: "Account",
-            icon: Settings
+            icon: Settings,
+            active: pathname.startsWith("/account"),
           }
         ]
       }

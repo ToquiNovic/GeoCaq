@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import { LatLngTuple } from "leaflet";
 import { useEffect, useState } from "react";
+import MapControls from "./MapControls";
 
 // Importación dinámica
 const MapContainer = dynamic(
@@ -54,11 +55,10 @@ export default function Map() {
   }
 
   return (
-    <div className="z-1 p-0 m-0">
+    <div className="relative z-1">
       <MapContainer
         center={position}
-        zoom={13}
-        scrollWheelZoom={false}
+        zoom={6}
         style={{ height: "93.8vh", width: "100vw" }}
       >
         <TileLayer
@@ -69,6 +69,9 @@ export default function Map() {
           <Popup>¡Un marcador de ejemplo en Colombia!</Popup>
         </Marker>
       </MapContainer>
+      <div className="absolute top-4 right-4 z-[1000]">
+        <MapControls />
+      </div>
     </div>
   );
 }

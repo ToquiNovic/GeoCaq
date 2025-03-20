@@ -25,12 +25,13 @@ export function ModeToggle() {
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
+            {/* Solucionado: Escala correcta y transiciones */}
             <SunIcon className="w-[1.2rem] h-[1.2rem] rotate-90 scale-0 transition-transform ease-in-out duration-500 dark:rotate-0 dark:scale-100" />
-            <MoonIcon className="absolute w-[1.2rem] h-[1.2rem] rotate-0 scale-1000 transition-transform ease-in-out duration-500 dark:-rotate-90 dark:scale-0" />
-            <span className="sr-only">Switch Theme</span>
+            <MoonIcon className="absolute w-[1.2rem] h-[1.2rem] rotate-0 scale-100 transition-transform ease-in-out duration-500 dark:-rotate-90 dark:scale-0" />
+            <span className="sr-only">Cambiar Tema</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="bottom">Switch Theme</TooltipContent>
+        <TooltipContent side="bottom" className="z-50">Cambiar Tema</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

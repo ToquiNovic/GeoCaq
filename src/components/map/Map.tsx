@@ -1,17 +1,24 @@
-// components/Map.tsx
 "use client";
 
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import { LatLngTuple } from "leaflet";
 import { useEffect, useState } from "react";
-import MapControls from "./MapControls";
+import { MapControls } from "./controls";
+import { useSidebar } from "@/hooks/use-sidebar";
+import { useStore } from "@/hooks/use-store";
+import { cn } from "@/lib/utils";
 
 // Importación dinámica
 const MapContainer = dynamic(
-  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  () =>
+    import("react-leaflet").then((mod) => {
+      console.log("MapContainer Loaded");
+      return mod.MapContainer;
+    }),
   { ssr: false }
 );
+
 const TileLayer = dynamic(
   () => import("react-leaflet").then((mod) => mod.TileLayer),
   { ssr: false }
@@ -25,6 +32,7 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
 });
 
 export default function Map() {
+  const sidebar = useStore(useSidebar, (x) => x);
   const position: LatLngTuple = [1.679869, -75.249297];
   const [isClient, setIsClient] = useState(false);
 
@@ -50,19 +58,36 @@ export default function Map() {
     });
   }, []);
 
-  if (!isClient) {
+  if (!sidebar || !isClient) {
     return <p>Loading map...</p>;
   }
 
+  const { getOpenState, settings } = sidebar;
+  const isOpen = getOpenState();
+  const isDisabled = settings.disabled;
+
   return (
-    <div className="relative z-1">
+    <div
+      className={cn(
+        "relative z-1",
+        !isDisabled &&
+          isOpen &&
+          "md:max-w-[100vw] lg:max-w-[100vw]",
+        !isDisabled &&
+          !isOpen &&
+          "md:max-w-[calc(150%_-_70px)] lg:max-w-[100vw]"
+      )}
+    >
       <MapContainer
         center={position}
         zoom={6}
-        style={{ height: "93.8vh", width: "100vw" }}
+        className={cn(
+          "h-[90vh] w-full",
+          isDisabled && "w-full"
+        )}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position}>

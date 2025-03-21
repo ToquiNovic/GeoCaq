@@ -1,3 +1,4 @@
+// components/map/controls/MenuContent.tsx
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,7 @@ export interface MenuContentProps {
   onClose: () => void;
 }
 
-const MenuContent: React.FC<MenuContentProps> = ({ title, items, onClose }) => {
+export const MenuContent: React.FC<MenuContentProps> = ({ title, items, onClose }) => {
   return (
     <Card className="w-64 shadow-lg absolute top-0 right-16">
       <CardContent className="p-4">
@@ -30,5 +31,3 @@ const MenuContent: React.FC<MenuContentProps> = ({ title, items, onClose }) => {
     </Card>
   );
 };
-
-export default MenuContent;

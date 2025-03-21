@@ -1,13 +1,13 @@
+// components/map/controls/MapControls.tsx
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Layers, Map, Wrench, List, X, LucideProps } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import MenuContent from "./MenuContent";
+import { MenuContent } from "./MenuContent";
 
 const menuItems = {
   tools: [
@@ -36,20 +36,18 @@ const MapControls = () => {
     Icon: React.ComponentType<LucideProps>,
     label: string
   ) => (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            onClick={() => toggleMenu(menu)}
-            variant="secondary"
-            className="rounded-full p-3"
-          >
-            {activeMenu === menu ? <X size={24} /> : <Icon size={24} />}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>{label}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          onClick={() => toggleMenu(menu)}
+          variant="secondary"
+          className="rounded-full p-3"
+        >
+          {activeMenu === menu ? <X size={24} /> : <Icon size={24} />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
   );
 
   return (

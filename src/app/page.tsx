@@ -1,10 +1,17 @@
 // app/page.tsx
+import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
+import { Navbar } from "@/components/admin-panel/navbar";
 import { Map } from "@/components/map";
 
 export default function HomePage() {
   return (
-    <div className="flex items-center justify-center overflow-hidden">
-      <Map />
-    </div>
+    <>
+      {/* <Navbar />
+      <div className="container pt-4 sm:px-6">
+        <AdminPanelLayout>
+        </AdminPanelLayout>
+        </div> */}
+        <Map />
+    </>
   );
 }

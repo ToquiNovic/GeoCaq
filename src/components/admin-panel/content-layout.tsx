@@ -3,14 +3,14 @@ import { Navbar } from "@/components/admin-panel/navbar";
 interface ContentLayoutProps {
   title: string;
   children: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
-export function ContentLayout({ title, children }: ContentLayoutProps) {
+export function ContentLayout({ title, icon, children }: ContentLayoutProps) {
   return (
-    <>
-      {/* <Navbar title={title} /> */}
+    <div>
+      <Navbar title={title} icon={icon} />
       {children}
-      {/* <div className="container pt-8 pb-8 px-4 sm:px-8"></div> */}
-    </>
+    </div>
   );
 }

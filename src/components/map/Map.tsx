@@ -1,3 +1,4 @@
+// components/map/Map.tsx
 "use client";
 
 import dynamic from "next/dynamic";
@@ -70,30 +71,28 @@ export default function Map() {
     <div
       className={cn(
         "relative z-1",
-        !isDisabled &&
-          isOpen &&
-          "md:max-w-[100vw] lg:max-w-[100vw]",
+        !isDisabled && isOpen && "md:max-w-[100vw] lg:max-w-[100vw]",
         !isDisabled &&
           !isOpen &&
-          "md:max-w-[calc(150%_-_70px)] lg:max-w-[100vw]"
+          "md:max-w-[calc(100%_-_70px)] lg:max-w-[100vw]"
       )}
     >
-      <MapContainer
-        center={position}
-        zoom={6}
-        className={cn(
-          "h-[90vh] w-full",
-          isDisabled && "w-full"
-        )}
-      >
-        <TileLayer
-          attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position}>
-          <Popup>¡Un marcador de ejemplo en Colombia!</Popup>
-        </Marker>
-      </MapContainer>
+      {isClient && (
+        <MapContainer
+          center={position}
+          zoom={6}
+          className={cn("h-[94vh] md:h-[98vh] lg:h-[93.8vh] w-full", isDisabled && "w-full")}
+        >
+          <TileLayer
+            attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position}>
+            <Popup>¡Un marcador de ejemplo en Colombia!</Popup>
+          </Marker>
+        </MapContainer>
+      )}
+
       <div className="absolute top-4 right-4 z-[1000]">
         <MapControls />
       </div>

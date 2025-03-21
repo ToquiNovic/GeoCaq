@@ -5,7 +5,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
-import { Navbar } from "@/components/admin-panel/navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -48,7 +47,6 @@ export default function RootLayout({
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>
-            <Navbar />
             <AdminPanelLayout>{children}</AdminPanelLayout>
           </TooltipProvider>
         </ThemeProvider>
